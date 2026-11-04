@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
+import ProductDetails from "./pages/ProductDetails";
 
 
 function cartReducer(state, action) {
@@ -80,6 +81,7 @@ function App() {
   const navigate = useNavigate();
 
   const [cart, dispatch] = useReducer(cartReducer, []);
+  
   return (
 
     <>
@@ -87,12 +89,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home Student FullName="Gopal" Age={30} />} />
         <Route path="/product" element={<Product dispatch={dispatch}/>} />
+        
         <Route path="/cart" element={<Cart cart={cart} dispatch={dispatch}/>} />
         <Route path="/login" element={<Login setUserName={setUserName} />} />
         <Route path="/register" element={<Register setUserName={setUserName} />} />
         <Route path="/practice" element={<Practice />} />
         <Route path="/about" element={<About />}/>
         <Route path="/contact" element={<Contact />}/>
+        <Route path="/product/:id" element={<ProductDetails dispatch={dispatch}/>}/>
 
 
 

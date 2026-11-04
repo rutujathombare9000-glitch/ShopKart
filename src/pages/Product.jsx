@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./Product.css";
+import { useNavigate } from "react-router-dom";
 
+import "./Product.css";
 
 const products = [
   {
@@ -15,7 +16,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/Samsung_phone.png"
   },
-
   {
     id: 2,
     name: "Puma Running Shoes",
@@ -28,7 +28,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/puma_shoes.png"
   },
-
   {
     id: 3,
     name: "Amazon Echo Dot",
@@ -41,7 +40,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/amazon_echo_dot.png"
   },
-
   {
     id: 4,
     name: "American Tourister Trolley Bag",
@@ -54,7 +52,6 @@ const products = [
     isAvailable: false,
     image: "/images/products/trolley-bag..png"
   },
-
   {
     id: 5,
     name: "HP Wireless Keyboard",
@@ -67,7 +64,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/keyboard.png"
   },
-
   {
     id: 6,
     name: "Milton Thermosteel Bottle",
@@ -80,7 +76,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/thermos-bottle.png"
   },
-
   {
     id: 7,
     name: "Maybelline Lipstick Set",
@@ -93,7 +88,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/lipstick-set.png"
   },
-
   {
     id: 8,
     name: "Levi's Casual Jeans",
@@ -106,7 +100,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/jeans-1.png"
   },
-
   {
     id: 9,
     name: "Bajaj Mixer Grinder",
@@ -119,7 +112,6 @@ const products = [
     isAvailable: false,
     image: "/images/products/mixer-grinder.png"
   },
-
   {
     id: 10,
     name: "Canon Inkjet Printer",
@@ -132,7 +124,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/printer.png"
   },
-
   {
     id: 11,
     name: "Nivea Skincare Combo",
@@ -145,7 +136,6 @@ const products = [
     isAvailable: true,
     image: "/images/products/skincare-combo.png"
   },
-
   {
     id: 12,
     name: "Cello Non-Stick Pan",
@@ -165,6 +155,8 @@ function Product({ dispatch }) {
   const [maxPrice, setMaxPrice] = useState(20000);
   const [selectedRating, setSelectedRating] = useState(0);
   const [availability, setAvailability] = useState("");
+  const navigate = useNavigate();
+  const [addedProductId, setAddedProductId] = useState(null);
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -213,6 +205,7 @@ function Product({ dispatch }) {
 
   return (
     <>
+
 
       <main className="products-page">
         <section className="products-banner">
@@ -342,28 +335,56 @@ function Product({ dispatch }) {
             <div className="products-grid">
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((product) => (
-                  <div className="product-card" key={product.id}>
-                    <div className="product-image">
+                  <div className="product-card" key={product.id} title="Click for more info">
+
+                    <div
+                      className="product-image"
+                      onClick={() => navigate(`/product/${product.id}`)} >
                       {product.discount && (
-                        <span className="discount-badge">-{product.discount}</span>
+                        <span className="discount-badge"> -{product.discount} </span>
                       )}
-                      <button className="wishlist-button">♡</button>
+                      <button className="wishlist-button" onClick={(e) => e.stopPropagation()} >
+                        ♡
+                      </button>
+
                       <img src={product.image} alt={product.name} />
                     </div>
-                    <div className="product-info">
+
+                    <div className="product-info" onClick={() => navigate(`/product/${product.id}`)}>
                       <small>{product.category}</small>
+
                       <h3>{product.name}</h3>
+
                       <div className="rating">
-                        ⭐ {product.rating}
-                        <span> ({product.reviews})</span>
+                        ⭐ {product.rating} <span>({product.reviews})</span>
                       </div>
+
                       <div className="product-price">
-                        ₹{product.price}
-                        <del>₹{product.originalPrice}</del>
+                        ₹{product.price} <del>₹{product.originalPrice}</del>
                       </div>
-                        <button className="add-cart-button" onClick={() => {
-                        dispatch({ type: "ADD_ITEM", payload: product });
-                      }}>🛒 Add to Cart</button>
+
+                      <button
+                        className="add-cart-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+
+                          dispatch({
+                            type: "ADD_ITEM",
+                            payload: product
+                          });
+                          setAddedProductId(product.id);
+
+                          setTimeout(() => {
+                            setAddedProductId(null);
+                          }, 2000);
+                        }}
+                      >
+                        {addedProductId === product.id ? (
+                          <>✓ Added to Cart</>
+                        ) : (
+                          <>🛒 Add to Cart</>
+                        )}
+                      </button>
                     </div>
                   </div>
                 ))
