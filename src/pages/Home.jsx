@@ -1,8 +1,11 @@
 import React from 'react'
+import {useContext} from "react"
 
 import './Home.css'
+import { ShopKartContext } from "../context/ShopKartContext";
 
 function Home() {
+  const { setUserName } = useContext(ShopKartContext);
 
   const products = [
   
@@ -106,11 +109,11 @@ function Home() {
           {/* Hero Benefits */}
           <div className="hero-benefits">
             <div className="benefit-item">
-              <img src="./icons/secure.png" />  <p>100% Secure Payments</p> </div>
+              <img src="/icons/secure.png" />  <p>100% Secure Payments</p> </div>
             <div className="benefit-item">
-              <img src="./icons/clock.png" /> <p>7 Days Easy Returns</p> </div>
+              <img src="/icons/clock.png" /> <p>7 Days Easy Returns</p> </div>
             <div className="benefit-item">
-              <img src="./icons/express-delivery.png" /> <p>Fast & Free Delivery</p> </div>
+              <img src="/icons/express-delivery.png" /> <p>Fast & Free Delivery</p> </div>
           </div>
         </div>
       </section>
@@ -167,7 +170,7 @@ function Home() {
     <div className="trending-heading">
       <h2 className="trending-title">
         <span className="trending-icon">
-          <img src="./icons/trending.png" alt="Trending" />
+          <img src="/icons/trending.png" alt="Trending" />
         </span>
 
         <span> Trending <strong>Now</strong> </span>

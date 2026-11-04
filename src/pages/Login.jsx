@@ -1,9 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import './Login.css'
 import { useNavigate } from "react-router-dom";
+import { ShopKartContext } from "../context/ShopKartContext";
 
-function Login({ setUserName }) {
+function Login() {
+  const { setUserName } = useContext(ShopKartContext);
   const onSubmit = (data) => {
     setUserName(data.username);
     navigate("/");
@@ -18,7 +21,7 @@ function Login({ setUserName }) {
         <div className="login-container">
 
           <div className="login-logo">
-            <img src="/images/logo.png" alt="ShopKart" />
+            <img src="./images/products/logo.png" alt="ShopKart" />
           </div>
 
           <h2>Welcome Back!</h2>

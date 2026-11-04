@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react";
-import {setItem, getItem} from '../utils/localStorage'
-export default function Practice() {
-    const [count, setCount] = useState(()=>{
-        const item = getItem("count");
-        return item || 0;
-    });
+import {createContext} from "react"; //import
+import Theme from "./Theme";
 
-    useEffect(()=>{
-        setItem('count', count)
-    }, [count])
+const ThemeContext = createContext(); //initialization
+
+export default function Practice({children}) {
     
+    const theme = "Light";
     return (
         <>
-            <div>
-                <button onClick={()=>setCount(count + 1)}>Increament</button>
-                <p>{count}</p>
-                <button onClick={()=>setCount(count - 1)}>Decreament</button>
-            </div>
+        
+            <ThemeContext.Provider value={theme}>
+                <Theme />
+                {children}
+            </ThemeContext.Provider>
         </>
 
     );
 }
+export {ThemeContext};
