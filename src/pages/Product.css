@@ -126,7 +126,7 @@
 			height: 150px;
 			margin: 25px 12px 0;
 			padding: 0 35px;
-			background-image: url("/images/product-banner-responsive.png");
+			background-image: url("./images/products/product-banner-responsive.png");
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -167,7 +167,7 @@
 			height: 125px;
 			margin: 20px 10px 0;
 			padding: 0 20px;
-			background-image: url("/images/product-banner-responsive.png");
+			background-image: url("./images/products/product-banner-responsive.png");
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -216,7 +216,7 @@
 			height: 105px;
 			margin: 16px 8px 0;
 			padding: 0 15px;
-			background-image: url("/images/product-banner-responsive.png");
+			background-image: url("./images/products/product-banner-responsive.png");
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
