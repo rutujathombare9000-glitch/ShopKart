@@ -6,7 +6,7 @@
   margin: 20px;
   min-height: 420px;
   border-radius: 18px;
-  background-image: url("images/products/hero-banner-3.png");
+  background-image: url("/images/products/hero-banner-3.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -199,7 +199,7 @@
     overflow: hidden;
 
     /* Keep the background image */
-    background-image: url("./images/products/hero-banner-3.png");
+    background-image: url("/images/products/hero-banner-3.png");
 
     /* Make the whole product composition visible */
     background-size: cover;
@@ -222,7 +222,7 @@
     right: -12px;
     bottom: -12px;
 
-    background-image: url("./images/products/hero-banner-3.png");
+    background-image: url("/images/products/hero-banner-3.png");
 
     background-size: cover;
 
